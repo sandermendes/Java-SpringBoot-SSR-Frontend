@@ -1,10 +1,5 @@
-import React, { FunctionComponent, SyntheticEvent, useState } from "react";
-import {
-    Button, Checkbox, FormControl, FormHelperText, Grid, InputLabel, LinearProgress, ListItemText,
-    MenuItem, OutlinedInput, Select, SelectChangeEvent, TextField
-} from "@mui/material";
-// import { useRouter } from "next/router";
-// import Message from "./message";
+import React, { useState } from "react";
+import { Button, Grid, TextField } from "@mui/material";
 
 const formValueInitial = {
     name: "",
@@ -14,7 +9,6 @@ const formValueInitial = {
 }
 
 const MaintenanceForm = ({ formType, doctors, setDoctors }) => {
-    // const route = useRouter();
 
     const [formValue, setFormValue] = useState(formType === "add" ? formValueInitial : doctors);
     const [errors, setErrors] = useState({});

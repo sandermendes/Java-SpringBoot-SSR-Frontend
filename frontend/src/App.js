@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { Avatar, Box, Card, CardContent, CardHeader, Container, Divider, Fab,
     Grid, List, ListItem, ListItemAvatar, Modal, Typography } from "@mui/material";
-import { Add as AddIcon, Delete as DeleteIcon, Edit as EditIcon } from "@mui/icons-material";
+import { Add as AddIcon } from "@mui/icons-material";
 import axios from "axios";
 import MaintenanceForm from "./Components/maintenanceForm";
 
