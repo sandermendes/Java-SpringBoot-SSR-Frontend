@@ -35,7 +35,8 @@ const MaintenanceForm = ({ formType, doctors, setDoctors }) => {
 
         let res;
         if (formType === "add") {
-            res = await fetch(`${process.env.MAIN_URL}/api/doctor/add`, {
+            console.log('JSON.stringify(formValue)', JSON.stringify(formValue))
+            res = await fetch(`http://localhost:8080/doctor`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
