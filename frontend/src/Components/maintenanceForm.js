@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Button, Grid, TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import Message from "./Message";
 
 const formValueInitial = {
     name: "",
@@ -9,6 +11,7 @@ const formValueInitial = {
 }
 
 const MaintenanceForm = ({ formType, doctors, setDoctors }) => {
+    const navigate = useNavigate();
 
     const [formValue, setFormValue] = useState(formType === "add" ? formValueInitial : doctors);
     const [errors, setErrors] = useState({});
@@ -29,8 +32,7 @@ const MaintenanceForm = ({ formType, doctors, setDoctors }) => {
 
         let res;
         if (formType === "add") {
-            console.log('JSON.stringify(formValue)', JSON.stringify(formValue))
-            res = await fetch(`http://localhost:8080/doctor`, {
+            res = await fetch(`${process.env.REACT_APP_API_URL}/api/doctor/add`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -39,7 +41,7 @@ const MaintenanceForm = ({ formType, doctors, setDoctors }) => {
                 body: JSON.stringify(formValue)
             });
         } else {
-            res = await fetch(`${process.env.MAIN_URL}/api/doctor/edit/${doctors.id}`, {
+            res = await fetch(`${process.env.REACT_APP_API_URL}/api/doctor/edit/${doctors.id}`, {
                 method: 'PUT',
                 headers: {
                     'Accept': 'application/json',
@@ -58,26 +60,16 @@ const MaintenanceForm = ({ formType, doctors, setDoctors }) => {
             setOpenInfo(true);
             setInfoMessage( result );
         } else {
-            let tempErrors = {};
-            result.info.inner.map((validationField) => {
-                if (!Object(tempErrors).hasOwnProperty(validationField.path)) {
-                    tempErrors = {
-                        ...tempErrors,
-                        [validationField.path]: validationField.errors[0]
-                    }
-                }
-                setErrors( tempErrors );
-            })
             setOpenInfo(true);
             setInfoMessage( result );
         }
     }
 
-    // const onCancelClick = () => {
-    //     if (formType === "edit") {
-    //         route.push(`${process.env.MAIN_URL}`)
-    //     }
-    // }
+    const onCancelClick = () => {
+        if (formType === "edit") {
+            navigate("/doctors")
+        }
+    }
 
     const handleChange = ( event ) => {
         const { target } = event
@@ -146,12 +138,12 @@ const MaintenanceForm = ({ formType, doctors, setDoctors }) => {
                     <Grid item md={12} xs={12}>
                         <Grid container direction="row" spacing={2} justifyContent="flex-end" style={{ marginTop: 10 }}>
                             <Button color="primary" variant="contained" style={{ marginRight: 10 }} type="submit">Confirmar</Button>
-                            {/*<Button color="error" variant="outlined" onClick={ onCancelClick }>Voltar</Button>*/}
+                            <Button color="error" variant="outlined" onClick={ onCancelClick }>Voltar</Button>
                         </Grid>
                     </Grid>
                 </Grid>
             </form>
-            {/*<Message openInfo={ openInfo } setOpenInfo={ setOpenInfo } infoMessage={ infoMessage } />*/}
+            <Message openInfo={ openInfo } setOpenInfo={ setOpenInfo } infoMessage={ infoMessage } />
         </React.Fragment>
     )
 }
