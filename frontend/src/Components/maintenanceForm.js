@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Grid, TextField } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import Message from "./Message";
 
 const formValueInitial = {
@@ -10,8 +10,7 @@ const formValueInitial = {
     mobilePhone: ""
 }
 
-const MaintenanceForm = ({ formType, doctors, setDoctors }) => {
-    const navigate = useNavigate();
+const MaintenanceForm = ({ formType, doctors, setDoctors, history }) => {
 
     const [formValue, setFormValue] = useState(formType === "add" ? formValueInitial : doctors);
     const [errors, setErrors] = useState({});
@@ -67,7 +66,7 @@ const MaintenanceForm = ({ formType, doctors, setDoctors }) => {
 
     const onCancelClick = () => {
         if (formType === "edit") {
-            navigate("/doctors")
+            history.push("/doctors")
         }
     }
 
@@ -148,4 +147,4 @@ const MaintenanceForm = ({ formType, doctors, setDoctors }) => {
     )
 }
 
-export default MaintenanceForm
+export default withRouter(MaintenanceForm)

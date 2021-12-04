@@ -3,7 +3,6 @@ import axios from "axios";
 import Main from "./Main";
 import { Box, Typography } from "@mui/material";
 import MaintenanceForm from "./maintenanceForm";
-import { useParams } from "react-router-dom";
 
 const formValueInitial = {
     name: "",
@@ -12,13 +11,14 @@ const formValueInitial = {
     mobilePhone: ""
 }
 
-const EditForm = () => {
-    const params = useParams();
+const EditForm = (props) => {
+    const doctorId = props.match.params.id
+
     const [doctor, setDoctor] = useState(formValueInitial)
     const [loading, setLoading] = useState(true)
 
     const fetchDoctor = () => {
-        axios.get(`${process.env.REACT_APP_API_URL}/api/doctor/${params.id}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/api/doctor/${doctorId}`)
             .then((response) => {
                 setDoctor(response.data)
                 setLoading(false)
