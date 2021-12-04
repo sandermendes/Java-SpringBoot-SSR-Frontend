@@ -47,6 +47,7 @@ build/
 
 # production
 /frontend/build
+/frontend/.env.development
 
 # misc
 .DS_Store
@@ -65,4 +66,3 @@ package-lock.json
 
 # node
 /frontend/node
-
