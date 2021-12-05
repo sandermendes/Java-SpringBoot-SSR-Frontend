@@ -27,7 +27,7 @@ const EditForm = (props) => {
 
     useEffect(() => {
         fetchDoctor();
-    }, [])
+    })
 
     return (
         <Main>
