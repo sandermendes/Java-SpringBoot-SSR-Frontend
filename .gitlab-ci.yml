@@ -29,4 +29,12 @@ stages:
 sast:
   stage: test
 include:
-  - template: Auto-DevOps.gitlab-ci.yml
+  - template: Jobs/Build.gitlab-ci.yml
+  - template: Jobs/Code-Quality.gitlab-ci.yml
+  - template: Jobs/Code-Intelligence.gitlab-ci.yml
+  - template: Jobs/Deploy.gitlab-ci.yml
+  - template: Jobs/Deploy/ECS.gitlab-ci.yml
+  - template: Jobs/Browser-Performance-Testing.gitlab-ci.yml
+  - template: Security/Dependency-Scanning.gitlab-ci.yml
+  - template: Security/SAST.gitlab-ci.yml
+  - template: Security/Secret-Detection.gitlab-ci.yml
