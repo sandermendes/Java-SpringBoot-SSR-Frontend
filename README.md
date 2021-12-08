@@ -1,4 +1,4 @@
-# Doctors Registration
+# Doctors Management
 
 ## Language used
 
