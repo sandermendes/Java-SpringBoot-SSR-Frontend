@@ -19,10 +19,10 @@ Simple interface to interact with the API, using:
 
 ## How to use
 
-[Download](https://github.com/sandermendes/spring-boot-app-test/archive/refs/heads/master.zip) or clone the repo:
+[Download](https://github.com/sandermendes/Java-SpringBoot-SSR-Frontend/archive/refs/heads/master.zip) or clone the repo:
 
 ```sh
-git clone https://github.com/sandermendes/spring-boot-app-test.git
+git clone https://github.com/sandermendes/Java-SpringBoot-SSR-Frontend.git
 ```
 
 Access the folder in question
